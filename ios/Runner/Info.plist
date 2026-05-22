@@ -45,5 +45,10 @@
 	<true/>
 	<key>UIApplicationSupportsIndirectInputEvents</key>
 	<true/>
+	<key>NSPhotoLibraryUsageDescriptio</key>
+	<string>images permission is required</string>
+
+
+	n
 </dict>
 </plist>

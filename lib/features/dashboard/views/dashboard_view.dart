@@ -7,7 +7,10 @@ class DashboardView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const Scaffold(
-      body: DashboardViewBody(),
+      body: Padding(
+        padding: EdgeInsets.symmetric(horizontal: 16.0),
+        child: DashboardViewBody(),
+      ),
     );
   }
 }
