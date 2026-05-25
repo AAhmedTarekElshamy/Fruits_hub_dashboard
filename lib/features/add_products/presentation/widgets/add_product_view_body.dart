@@ -2,11 +2,13 @@ import 'dart:io';
 
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/widgets/custom_button.dart';
 import '../../../../core/widgets/custom_text_field.dart';
 import '../../../../core/widgets/image_field.dart';
 import '../../../../core/widgets/terms_for_dash.dart';
 import '../../domain/entities/add_product_input_entity.dart';
+import '../manager/add_product/add_product_cubit.dart';
 
 class AddProductViewBody extends StatefulWidget {
   const AddProductViewBody({super.key});
@@ -89,8 +91,7 @@ class _AddProductViewBodyState extends State<AddProductViewBody> {
                 formKey.currentState!.save();
                 // how to save product in fire base collection called product
                 AddProductEntity input= AddProductEntity(name: name, code:code, price: price, description: description, isFeatured: isFeatured, image: image!, imageUrl: null);
-
-
+                context.read<AddProductCubit>().addProduct(input);
                 }else {
                   setState(() {
                     autoValidateMode = AutovalidateMode.always;

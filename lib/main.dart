@@ -1,7 +1,10 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:fruits_hub_dashboard/core/helper_functions/on_generate_routes.dart';
+import 'core/services/custom_bloc_observer.dart';
+import 'core/services/git_it_service.dart';
 import 'features/dashboard/views/dashboard_view.dart';
 import 'firebase_options.dart';
 
@@ -11,6 +14,8 @@ void main() async {
   await Firebase.initializeApp(
     options: DefaultFirebaseOptions.currentPlatform,
   );
+  setupGetIt();
+  Bloc.observer = CustomBlocObserver();
   runApp(
     EasyLocalization(
       supportedLocales: const [Locale('ar'), Locale('en')],
