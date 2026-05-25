@@ -10,6 +10,12 @@ class AddProductInputModel {
   final bool isFeatured;
   final File image;
   String? imageUrl;
+  final int expirationMonths;
+  bool isOrganic = false;
+  final int numOfCalories;
+  final int unitAmount;
+  final num avgRating = 0;
+  final num ratingCount = 0;
 
   AddProductInputModel({
     required this.name,
@@ -18,8 +24,11 @@ class AddProductInputModel {
     required this.description,
     required this.isFeatured,
     required this.image,
-    this.imageUrl,
+    required this.expirationMonths,
+    required this.numOfCalories,
+    required this.unitAmount,
   });
+
   factory AddProductInputModel.fromEntity(AddProductEntity entity) {
     return AddProductInputModel(
       name: entity.name,
@@ -28,20 +37,28 @@ class AddProductInputModel {
       description: entity.description,
       isFeatured: entity.isFeatured,
       image: entity.image,
-      imageUrl: entity.imageUrl,
+      expirationMonths: entity.expirationMonths,
+      numOfCalories: entity.numOfCalories,
+      unitAmount: entity.unitAmount,
     );
   }
-  toJson(){
+
+
+
+  Map<String, dynamic> toJson() {
     return {
-      'name':name,
-      'code':code,
-      'price':price,
-      'description':description,
-      'isFeatured':isFeatured,
-      'imageUrl':imageUrl,
+      'name': name,
+      'code': code,
+      'price': price,
+      'description': description,
+      'isFeatured': isFeatured,
+      'imageUrl': imageUrl,
+      'expirationMonths': expirationMonths,
+      'isOrganic': isOrganic,
+      'numOfCalories': numOfCalories,
+      'unitAmount': unitAmount,
+      'avgRating': avgRating,
+      'ratingCount': ratingCount,
     };
   }
-
-
-
 }

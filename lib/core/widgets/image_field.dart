@@ -26,11 +26,11 @@ class _ImageFieldState extends State<ImageField> {
     }
 
     setState(() => isLoading = false);
-    widget.onFilePicked(selectedImage); // no ! — may be null if cancelled
+    widget.onFilePicked(selectedImage);
   }
 
   void removeImage() {
-    widget.onFilePicked(null); // notify parent first
+    widget.onFilePicked(null);
     setState(() => selectedImage = null);
   }
 
@@ -44,7 +44,7 @@ class _ImageFieldState extends State<ImageField> {
           children: [
             Container(
               width: double.infinity,
-              height: 200,
+              height: 160,
               decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(16),
                 border: Border.all(color: Colors.grey),
@@ -54,15 +54,16 @@ class _ImageFieldState extends State<ImageField> {
                 borderRadius: BorderRadius.circular(16),
                 child: Image.file(selectedImage!, fit: BoxFit.cover),
               )
-                  : const Icon(Icons.image_outlined, size: 180),
+                  : const Icon(Icons.image_outlined, size: 140),
             ),
             if (selectedImage != null)
               Positioned(
                 left: 8,
                 top: 8,
-                child: IconButton(
-                  onPressed: removeImage,
-                  icon: const Icon(Icons.close, color: Colors.red),
+                child: GestureDetector(
+                  onTap: removeImage,
+                  behavior: HitTestBehavior.opaque, // ← blocks parent tap
+                  child: const Icon(Icons.close, color: Colors.red, size: 24),
                 ),
               ),
           ],
